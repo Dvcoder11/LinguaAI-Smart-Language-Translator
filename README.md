@@ -46,11 +46,8 @@ It provides context-aware translations, automatic language detection, voice inpu
 - SQLite
 
 **Python Libraries**
-- Pandas
-- NumPy
-- Scikit-learn
 - Requests
-- Joblib
+- langdetect
 
 ## Project Structure
 
