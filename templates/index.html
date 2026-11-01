@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LinguaAI - Smart Language Translator</title>
+
+    <meta name="description"
+          content="Translate text between multiple languages using AI.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+   
+<!-- NAVIGATION BAR -->
+<header class="navbar">
+    <div class="nav-container">
+
+        <a href="/" class="logo">
+            <span class="logo-icon">✦</span>
+            <span>Lingua<span class="logo-highlight">AI</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#translator">Translator</a>
+            <a href="/history-page">History</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <div class="nav-tag">
+            <span class="status-dot"></span>
+            AI Powered
+        </div>
+
+        <div class="user-nav">
+            <span>Welcome, {{ user.username }}</span>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+
+    </div>
+</header>
+
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+
+            <div class="hero-badge">
+                <span>✦</span>
+                AI-POWERED TRANSLATION
+            </div>
+
+            <h1>
+                Language has no
+                <span>boundaries.</span>
+            </h1>
+
+            <p>
+                Translate your words into any language with the
+                power of Artificial Intelligence.
+                Fast, simple and context-aware.
+            </p>
+
+        </section>
+
+
+        <!-- TRANSLATOR SECTION -->
+        <section class="translator-section" id="translator">
+
+            <div class="translator-heading">
+
+                <div>
+                    <h2>Translate Text</h2>
+                    <p>Enter your text and choose your target language.</p>
+                </div>
+
+                <span class="secure-label">
+                    🔒 Secure Translation
+                </span>
+
+            </div>
+
+
+            <!-- TRANSLATION GRID -->
+            <div class="translation-grid">
+
+                <!-- INPUT PANEL -->
+                <div class="translation-card">
+
+                    <div class="card-header">
+
+                        <label for="sourceLanguage">
+                            Original Text
+                        </label>
+
+                        
+<select id="sourceLanguage" class="language-select">
+    <option value="auto">Auto Detect</option>
+    <option value="English">English</option>
+    <option value="Hindi">Hindi</option>
+    <option value="French">French</option>
+    <option value="Spanish">Spanish</option>
+    <option value="German">German</option>
+    <option value="Italian">Italian</option>
+    <option value="Portuguese">Portuguese</option>
+    <option value="Russian">Russian</option>
+    <option value="Japanese">Japanese</option>
+    <option value="Korean">Korean</option>
+    <option value="Chinese">Chinese</option>
+    <option value="Arabic">Arabic</option>
+    <option value="Bengali">Bengali</option>
+    <option value="Urdu">Urdu</option>
+    <option value="Tamil">Tamil</option>
+    <option value="Telugu">Telugu</option>
+    <option value="Marathi">Marathi</option>
+    <option value="Gujarati">Gujarati</option>
+    <option value="Punjabi">Punjabi</option>
+    <option value="Dutch">Dutch</option>
+    <option value="Turkish">Turkish</option>
+    <option value="Polish">Polish</option>
+    <option value="Ukrainian">Ukrainian</option>
+    <option value="Vietnamese">Vietnamese</option>
+    <option value="Thai">Thai</option>
+</select>
+
+
+                    </div>
+
+
+                    <textarea
+                        id="inputText"
+                        placeholder="Enter text you want to translate..."
+                        maxlength="5000"
+                        aria-label="Original text"
+                    ></textarea>
+
+
+                    <!-- NEW VOICE INPUT CONTROLS -->
+                    <div class="voice-input-controls" style="margin-top: 12px;">
+
+                        <button id="voiceInputButton"
+                                class="text-button"
+                                type="button">
+                            🎤 Start Voice Input
+                        </button>
+
+                        <span id="voiceInputStatus"
+                              role="status"
+                              aria-live="polite">
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <span id="characterCount">
+                            0 / 5000 characters
+                        </span>
+
+                        <button id="clearButton"
+                                class="text-button"
+                                type="button">
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LANGUAGE SWAP BUTTON -->
+                <div class="swap-container">
+
+                    <button id="swapButton"
+                            class="swap-button"
+                            type="button"
+                            title="Swap languages"
+                            aria-label="Swap languages">
+                        ⇄
+                    </button>
+
+                </div>
+
+
+                <!-- OUTPUT PANEL -->
+                <div class="translation-card output-card">
+
+                    <div class="card-header">
+
+                        <label for="outputText">
+                            Translated Text
+                        </label>
+
+                        
+<select id="targetLanguage" class="language-select">
+    <option value="Hindi" selected>Hindi</option>
+    <option value="English">English</option>
+    <option value="French">French</option>
+    <option value="Spanish">Spanish</option>
+    <option value="German">German</option>
+    <option value="Italian">Italian</option>
+    <option value="Portuguese">Portuguese</option>
+    <option value="Russian">Russian</option>
+    <option value="Japanese">Japanese</option>
+    <option value="Korean">Korean</option>
+    <option value="Chinese">Chinese</option>
+    <option value="Arabic">Arabic</option>
+    <option value="Bengali">Bengali</option>
+    <option value="Urdu">Urdu</option>
+    <option value="Tamil">Tamil</option>
+    <option value="Telugu">Telugu</option>
+    <option value="Marathi">Marathi</option>
+    <option value="Gujarati">Gujarati</option>
+    <option value="Punjabi">Punjabi</option>
+    <option value="Dutch">Dutch</option>
+    <option value="Turkish">Turkish</option>
+    <option value="Polish">Polish</option>
+    <option value="Ukrainian">Ukrainian</option>
+    <option value="Vietnamese">Vietnamese</option>
+    <option value="Thai">Thai</option>
+</select>
+
+
+                    </div>
+
+
+                    <!-- TRANSLATED TEXT -->
+                    <div id="outputText"
+                         class="output-text"
+                         role="status"
+                         aria-live="polite">
+
+                        <span class="placeholder-text">
+                            Your translated text will appear here...
+                        </span>
+
+                    </div>
+
+
+                    <!-- TEXT-TO-SPEECH CONTROLS -->
+                    <div class="speech-controls">
+
+                        <button id="speakButton"
+                                class="text-button"
+                                type="button">
+                            🔊 Listen
+                        </button>
+
+                        <button id="pauseButton"
+                                class="text-button"
+                                type="button"
+                                disabled>
+                            ⏸ Pause
+                        </button>
+
+                        <button id="resumeButton"
+                                class="text-button"
+                                type="button"
+                                disabled>
+                            ▶ Resume
+                        </button>
+
+                        <button id="stopButton"
+                                class="text-button"
+                                type="button"
+                                disabled>
+                            ⏹ Stop
+                        </button>
+
+                    </div>
+
+
+                    <!-- OUTPUT FOOTER -->
+                    <div class="card-footer">
+
+                        <span id="outputCount">
+                            Translation output
+                        </span>
+
+                        <div class="output-actions">
+
+                            <button id="copyButton"
+                                    class="text-button"
+                                    type="button">
+                                Copy
+                            </button>
+
+                            <button id="downloadButton"
+                                    class="text-button"
+                                    type="button"
+                                    disabled>
+                                ↓ Download
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END TRANSLATION GRID -->
+
+
+            <!-- ERROR MESSAGE -->
+            <div id="errorMessage"
+                 class="error-message"
+                 role="alert"
+                 hidden>
+            </div>
+
+
+            <!-- TRANSLATE BUTTON -->
+            <div class="translate-action">
+
+                <button id="translateButton"
+                        class="translate-button"
+                        type="button">
+
+                    <span id="buttonText">
+                        ✦ Translate Now
+                    </span>
+
+                </button>
+
+                <p>
+                    Powered by LinguaAI's AI translation engine.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES SECTION -->
+        <section class="features-section" id="about">
+
+            <div class="section-heading">
+
+                <h2>Translation made smarter.</h2>
+
+                <p>
+                    Experience a more natural way to communicate
+                    across languages.
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <!-- FEATURE 1 -->
+                <div class="feature-card">
+
+                    <div class="feature-icon purple-icon">✦</div>
+
+                    <h3>AI-Powered</h3>
+
+                    <p>
+                        Uses LinguaAI's AI translation engine to generate
+                        meaningful translations.
+                    </p>
+
+                </div>
+
+
+                <!-- FEATURE 2 -->
+                <div class="feature-card">
+
+                    <div class="feature-icon blue-icon">◎</div>
+
+                    <h3>Context Aware</h3>
+
+                    <p>
+                        Understands sentence meaning instead of
+                        translating words individually.
+                    </p>
+
+                </div>
+
+
+                <!-- FEATURE 3 -->
+                <div class="feature-card">
+
+                    <div class="feature-icon green-icon">↗</div>
+
+                    <h3>Simple & Fast</h3>
+
+                    <p>
+                        An easy-to-use interface for translating
+                        text between languages.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <p>
+            © 2026 LinguaAI. Powered by Generative AI.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+
+</html>

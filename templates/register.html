@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | LinguaAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <h1>✨ LinguaAI</h1>
+            <h2>Create Account</h2>
+            <p>Register to start using LinguaAI.</p>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <p class="auth-message">{{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('register') }}">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Choose a username" minlength="3" maxlength="30" required>
+
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Enter your email" required>
+
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Create a password (minimum 8 characters)" minlength="8" required>
+
+                <button type="submit" class="translate-button">Create Account</button>
+            </form>
+
+            <p>Already have an account?
+                <a href="{{ url_for('login') }}">Login here</a>
+            </p>
+        </div>
+    </main>
+
+</body>
+</html>

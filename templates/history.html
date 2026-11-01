@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Translation History | LinguaAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="/" class="logo">
+                <span class="logo-icon">✦</span>
+                <span>Lingua<span class="logo-highlight">AI</span></span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="/">Translator</a>
+                <a href="/history-page">History</a>
+            </nav>
+
+            <div class="nav-tag">
+                <span class="status-dot"></span>
+                AI Powered
+            </div>
+
+            <div class="user-nav">
+                <span>Welcome, {{ user.username }}</span>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- HISTORY CONTENT -->
+    <main class="history-container">
+
+        <div class="history-heading">
+
+            <div>
+                <h1>Translation History</h1>
+                <p>View your previously translated texts.</p>
+            </div>
+
+            <button id="deleteHistoryButton"
+                    class="translate-button">
+                Delete All History
+            </button>
+
+        </div>
+
+        <p id="historyStatus">Loading history...</p>
+
+        <div id="historyList"></div>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/history.js') }}"></script>
+
+</body>
+</html>
